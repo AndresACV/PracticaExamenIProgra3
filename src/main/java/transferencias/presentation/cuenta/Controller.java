@@ -53,7 +53,9 @@ public class Controller {
                 model.setCurrent(c);
                 break;
         }
-        Application.controllerCuentas.buscar("");
+        Application.controllerCuentas.buscar(""); // Actualiza las vistas
+        Application.controllerTransferencias.buscarOrigen("");
+        Application.controllerTransferencias.buscarDestino("");
         model.commit();
     }
 

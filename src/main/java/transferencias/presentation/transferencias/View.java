@@ -28,7 +28,6 @@ public class View implements Observer {
     private JLabel montoLabel;
     private JTextField montoField;
     private JButton transferirButton;
-
     public View() {
         BuscarButton1.addActionListener(new ActionListener() {
             @Override

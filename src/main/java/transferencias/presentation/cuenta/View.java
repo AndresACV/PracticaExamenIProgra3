@@ -23,7 +23,7 @@ public class View implements Observer {
     private JButton guardarButton;
     private JButton cancelarButton;
     private JLabel tipoLabel;
-    private JTextField tipoField;
+    private JComboBox tipoCheck;
 
     public View() {
         guardarButton.addActionListener(new ActionListener() {
@@ -68,11 +68,6 @@ public class View implements Observer {
         this.numeroField.setText(current.getNumero());
         this.nombreField.setText(current.getNombre());
 
-        if(model.getModo() == Application.MODO_EDITAR)
-            this.tipoField.setText(current.getTipo());
-        else
-            this.tipoField.setText("");
-
         if(String.valueOf(current.getSaldo()).equals("0.0")){ saldoField.setText(""); }
         else { saldoField.setText(String.valueOf(current.getSaldo())); }
 
@@ -91,7 +86,7 @@ public class View implements Observer {
         c.setNumero(numeroField.getText());
         c.setNombre(nombreField.getText());
         c.setSaldo(Double.parseDouble(saldoField.getText()));
-        c.setTipo(tipoField.getText());
+        c.setTipo(tipoCheck.getSelectedItem().toString());
         return c;
     }
 
@@ -103,7 +98,7 @@ public class View implements Observer {
         if (numeroField.getText().isEmpty()) {
             valid = false;
             numeroLabel.setBorder(Application.BORDER_ERROR);
-            mensajeError += "Numero de cuenta requerida. "; concatenaciones++;
+            mensajeError += "Numero de cuenta requerida. ";
         } else if(!numeroField.getText().matches("[0-9]+")){
             valid = false;
             numeroLabel.setBorder(Application.BORDER_ERROR);
@@ -113,7 +108,7 @@ public class View implements Observer {
         if (nombreField.getText().isEmpty()) {
             valid = false;
             nombreLabel.setBorder(Application.BORDER_ERROR);
-            mensajeError += "Nombre del propietario de la cuenta requerido. "; concatenaciones++;
+            mensajeError += "Nombre del propietario de la cuenta requerido. ";
         } else if(!nombreField.getText().matches("^[a-z\\sA-Z]+$")){
             valid = false;
             nombreLabel.setBorder(Application.BORDER_ERROR);
@@ -123,29 +118,14 @@ public class View implements Observer {
         if (saldoField.getText().isEmpty()) {
             valid = false;
             saldoLabel.setBorder(Application.BORDER_ERROR);
-            mensajeError += "Saldo de la cuenta requerido. "; concatenaciones++;
+            mensajeError += "Saldo de la cuenta requerido. ";
         } else if(!saldoField.getText().matches("^[0-9]+\\.?[0-9]*$")){
             valid = false;
             saldoLabel.setBorder(Application.BORDER_ERROR);
             mensajeError += "Saldo de la cuenta debe ser numerico. ";
         }
 
-        if (tipoField.getText().isEmpty()) {
-            valid = false;
-            tipoLabel.setBorder(Application.BORDER_ERROR);
-            mensajeError += "Tipo de cuenta requerido. "; concatenaciones++;
-        } else if(!tipoField.getText().matches("^[a-z\\sA-Z]+$")){
-            valid = false;
-            tipoLabel.setBorder(Application.BORDER_ERROR);
-            mensajeError += "Tipo de cuenta debe ser alfabético. ";
-        } else if (!tipoField.getText().equals(Application.ORIGEN) && !tipoField.getText().equals(Application.DESTINO)) {
-            valid = false;
-            tipoLabel.setBorder(Application.BORDER_ERROR);
-            mensajeError += "Tipo de cuenta debe ser Origen o Destino. ";
-        }
-        if(concatenaciones == 4){
-            JOptionPane.showMessageDialog(panel, "Todos los campos son requeridos","ERROR",JOptionPane.ERROR_MESSAGE);
-        } else if(!mensajeError.equals("")){
+        if(!mensajeError.equals("")){
             JOptionPane.showMessageDialog(panel, mensajeError,"ERROR",JOptionPane.ERROR_MESSAGE);
         }
 
