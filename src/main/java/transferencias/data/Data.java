@@ -19,10 +19,5 @@ public class Data {
 
     public Data() {
         cuentas = new ArrayList<>();
-        cuentas.add(new Cuenta("1234", "Juan Perez", 1000.0, Application.ORIGEN));
-        cuentas.add(new Cuenta("5678", "Maria Lopez", 2000.0, Application.ORIGEN));
-        cuentas.add(new Cuenta("9012", "Pedro Gomez", 3000.0, Application.DESTINO));
-        cuentas.add(new Cuenta("3456", "Ana Martinez", 4000.0, Application.ORIGEN));
-        cuentas.add(new Cuenta("7890", "Jose Rodriguez", 5000.0, Application.DESTINO));
     }
 }

@@ -46,8 +46,6 @@ public class View implements Observer {
             public void actionPerformed(ActionEvent e) {
                 clean();
                 if(validate()) {
-                    System.out.println(origenTable.getSelectedRow());
-                    System.out.println(destinoTable.getSelectedRow());
                     model.getCuentasOrigen().get(origenTable.getSelectedRow()).setSaldo(model.getCuentasOrigen().get(origenTable.getSelectedRow()).getSaldo() - Integer.parseInt(montoField.getText()));
                     model.getCuentasDestino().get(destinoTable.getSelectedRow()).setSaldo(model.getCuentasDestino().get(destinoTable.getSelectedRow()).getSaldo() + Integer.parseInt(montoField.getText())) ;
                     panel.updateUI();
