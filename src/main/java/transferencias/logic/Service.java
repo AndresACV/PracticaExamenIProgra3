@@ -1,5 +1,6 @@
 package transferencias.logic;
 
+import transferencias.Application;
 import transferencias.data.Data;
 import transferencias.data.XmlPersister;
 
@@ -43,11 +44,13 @@ public class Service {
                 .collect(Collectors.toList());
     }
 
-    public List<Cuenta> cuentasSearchTipo(String filtro) {
-        return data.getCuentas().stream()
-                .filter(e -> e.getNombre().contains(filtro))
-                .sorted(Comparator.comparing(Cuenta::getNumero))
-                .collect(Collectors.toList());
+    public List<Cuenta> cuentasSearchOrigen(String filtro) {
+        return data.getCuentas().stream().filter(e -> e.getNombre().contains(filtro)).sorted(Comparator.comparing(Cuenta::getNumero)).collect(Collectors.toList()).stream().filter(e -> Objects.equals(e.getTipo(), Application.ORIGEN)).sorted(Comparator.comparing(Cuenta::getNumero)).collect(Collectors.toList());
+    }
+
+    public List<Cuenta> cuentasSearchDestino(String filtro) {
+        return data.getCuentas().stream().filter(e -> e.getNombre().contains(filtro)).sorted(Comparator.comparing(Cuenta::getNumero)).collect(Collectors.toList()).stream().filter(e -> Objects.equals(e.getTipo(), Application.DESTINO)).sorted(Comparator.comparing(Cuenta::getNumero)).collect(Collectors.toList());
+
     }
 
     public Cuenta cuentaGet(String numero) { return data.getCuentas().stream().filter(e -> e.getNumero().equals(numero)).findFirst().orElse(null); }

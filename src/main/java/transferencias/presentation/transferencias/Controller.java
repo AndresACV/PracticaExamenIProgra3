@@ -10,8 +10,8 @@ public class Controller {
     transferencias.presentation.transferencias.Model model;
 
     public Controller(transferencias.presentation.transferencias.View view, transferencias.presentation.transferencias.Model model) {
-        model.setCuentasOrigen(Service.instance().cuentasSearchNombre(""));
-        model.setCuentasDestino(Service.instance().cuentasSearchNombre(""));
+        model.setCuentasOrigen(Service.instance().cuentasSearchOrigen(""));
+        model.setCuentasDestino(Service.instance().cuentasSearchDestino(""));
         this.view = view;
         this.model = model;
         view.setController(this);
@@ -19,13 +19,13 @@ public class Controller {
     }
 
     public void buscarOrigen(String filtro){
-        List<Cuenta> rows = Service.instance().cuentasSearchTipo(filtro);
+        List<Cuenta> rows = Service.instance().cuentasSearchOrigen(filtro);
         model.setCuentasOrigen(rows);
         model.commit();
     }
 
     public void buscarDestino(String filtro){
-        List<Cuenta> rows = Service.instance().cuentasSearchTipo(filtro);
+        List<Cuenta> rows = Service.instance().cuentasSearchDestino(filtro);
         model.setCuentasDestino(rows);
         model.commit();
     }
