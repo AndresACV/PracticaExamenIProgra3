@@ -46,11 +46,10 @@ public class Application {
         controllerTransferencias = new transferencias.presentation.transferencias.Controller(viewTransferencias, modelTransferencias);
 
         viewMain.getPanel().add("Cuentas", viewCuentas.getPanel());
-        viewMain.getPanel().add("Cuenta", viewCuenta.getPanel());
         viewMain.getPanel().add("Transferencias", viewTransferencias.getPanel());
 
         window = new JFrame();
-        window.setSize(1000,310);
+        window.setSize(1000,350);
         window.setExtendedState(JFrame.NORMAL);
         window.setLocationRelativeTo(null);
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
